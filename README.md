@@ -1,41 +1,3 @@
-## Thermal Management System Design  
-
-This repository is based on a thermal management model originally developed in Simulink. It includes a virtual Battery thermal management (BEV) equipped with an integrated thermal management system [1].
-
-In addition to the Simulink implementation, the refrigerant-based thermal management system is also modeled independently in GT-SUITE. This enables a detailed system-level representation of the vapor compression cycle, including the compressor, condenser, expansion device, and evaporator, with high-fidelity thermodynamic and component performance modeling.
-
-The combined use of **Simulink** (control-oriented modeling) and **GT-SUITE** (1D multi-physics system simulation) provides a comprehensive multi-fidelity framework for thermal system design.
-
-To enhance model fidelity and accelerate the design process, a novel **ML**-based thermodynamic modeling approach has been developed and validated against **CFD** simulations. Related CFD and AI/ML developments are available in my companion repository: 
-[Physics-Informed AI/ML for Thermodynamic Modeling](https://github.com/MajidMehrnia/Physics-Informed-AI-ML-for-Thermodynamic-Modeling)
-
-
-## Description
-
-Developed a heat pump co-simulation framework for a BEV using Simulink & GT-SUITE, based on a reference thermal architecture. The model comprises five subsystems: 
-**Electric Powertrain**, **Driveline**, **Refrigerant Cycle**, **Coolant Cycle**, and **Cabin Cycle**. The control algorithms are implemented in Simulink and are contained in the **Controls** subsystem.
-
-The refrigerant system was modeled in GT-SUITE and coupled with Simulink to improve simulation accuracy. The working refrigerant in this system is **R1234yf**. The condenser is a rectangular tube-and-fin type heat exchanger that dissipates refrigerant heat to the air. The air flow is driven by the vehicle speed and the fan. The liquid receiver provides storage for the refrigerant and permits only subcooled liquid to flow into the expansion valves. The evaporator is a rectangular tube-and-fin type heat exchanger that lets the refrigerant absorb heat from the air. It also dehumidifies the air when the air is humid. The compressor model simulated here is representative of a Valeo-like electric **Scroll** compressor commonly used in automotive air-conditioning and thermal management systems. Two different approaches are employed to simulate the compressor: (i) a simple 1D map-based model; and (ii) a hybrid 3D-to-1D model.
-
-### Main Thermodynamic Output
-The main thermodynamic output of the calculations is the **P–h diagram** of the heat pump cycle, as shown in the figure below. The calculated COP (based on refrigerant enthalpy difference (cycle COP)) is 5.2 at a cabin temperature of 40 °C, which is a reasonable value for this operating condition. It should be noted that the reported COP was calculated solely based on the refrigerant-side enthalpy differences across the compressor and condenser. The electrical power consumption of the compressor drive, condenser fan, cabin blower, and other auxiliary components was not included in the calculation. Therefore, the presented value represents the cycle (thermodynamic) COP rather than the overall system COP, and the actual system-level COP of the electric vehicle heat pump would be lower. For detailed information, please refer to the [results](results) folder of this project, where enthalpy, entropy and temperature values for different parts of the cycle are provided.
-
-![P-h_SIM](https://github.com/user-attachments/assets/effea2f7-4077-4bf4-82ef-bf2cce446ec7)
-
-
-## System Simulation
-The figure below illustrates how the refrigerant system interacts with the other components of the vehicle thermal management architecture in the Simulink.
-
-![Refrig_System](https://github.com/user-attachments/assets/bdc71a1a-0043-4013-a684-7a9282a2def7)
-
-In this project, due to CPU limitations, only the compressor model of GT-SUITE was linked to Simulink. The figure below illustrates the virtual vehicle developed using Simscape and its add-on products.  
-
-![Sim_diagram](https://github.com/user-attachments/assets/9ac5de1f-6cb7-4017-9ff3-9ec4309d36f7)
-
-
-These signals enable real-time interaction between the compressor model and the system-level of BEV. 
-The served fluid is a two-phase refrigerant. More information is available at [2].
-
 ## Refrigerant System 
 
 The refrigerant cycle comprises compressor, condenser, chiller expansion valve (EV1), evaporator 
@@ -81,6 +43,48 @@ Different sub-models are employed to represent thermodynamic processes, mechanic
 
 Due to GT-SUITE licensing restrictions, the original model files cannot be shared publicly. 
 Therefore, only representative diagrams, descriptions, and co-simulation interfaces are provided in this repository.
+
+
+
+
+## Thermal Management System Design  
+
+This repository is based on a thermal management model originally developed in Simulink. It includes a virtual Battery thermal management (BEV) equipped with an integrated thermal management system [1].
+
+In addition to the Simulink implementation, the refrigerant-based thermal management system is also modeled independently in GT-SUITE. This enables a detailed system-level representation of the vapor compression cycle, including the compressor, condenser, expansion device, and evaporator, with high-fidelity thermodynamic and component performance modeling.
+
+The combined use of **Simulink** (control-oriented modeling) and **GT-SUITE** (1D multi-physics system simulation) provides a comprehensive multi-fidelity framework for thermal system design.
+
+To enhance model fidelity and accelerate the design process, a novel **ML**-based thermodynamic modeling approach has been developed and validated against **CFD** simulations. Related CFD and AI/ML developments are available in my companion repository: 
+[Physics-Informed AI/ML for Thermodynamic Modeling](https://github.com/MajidMehrnia/Physics-Informed-AI-ML-for-Thermodynamic-Modeling)
+
+
+## Description
+
+Developed a heat pump co-simulation framework for a BEV using Simulink & GT-SUITE, based on a reference thermal architecture. The model comprises five subsystems: 
+**Electric Powertrain**, **Driveline**, **Refrigerant Cycle**, **Coolant Cycle**, and **Cabin Cycle**. The control algorithms are implemented in Simulink and are contained in the **Controls** subsystem.
+
+The refrigerant system was modeled in GT-SUITE and coupled with Simulink to improve simulation accuracy. The working refrigerant in this system is **R1234yf**. The condenser is a rectangular tube-and-fin type heat exchanger that dissipates refrigerant heat to the air. The air flow is driven by the vehicle speed and the fan. The liquid receiver provides storage for the refrigerant and permits only subcooled liquid to flow into the expansion valves. The evaporator is a rectangular tube-and-fin type heat exchanger that lets the refrigerant absorb heat from the air. It also dehumidifies the air when the air is humid. The compressor model simulated here is representative of a Valeo-like electric **Scroll** compressor commonly used in automotive air-conditioning and thermal management systems. Two different approaches are employed to simulate the compressor: (i) a simple 1D map-based model; and (ii) a hybrid 3D-to-1D model.
+
+### Main Thermodynamic Output
+The main thermodynamic output of the calculations is the **P–h diagram** of the heat pump cycle, as shown in the figure below. The calculated COP (based on refrigerant enthalpy difference (cycle COP)) is 5.2 at a cabin temperature of 40 °C, which is a reasonable value for this operating condition. It should be noted that the reported COP was calculated solely based on the refrigerant-side enthalpy differences across the compressor and condenser. The electrical power consumption of the compressor drive, condenser fan, cabin blower, and other auxiliary components was not included in the calculation. Therefore, the presented value represents the cycle (thermodynamic) COP rather than the overall system COP, and the actual system-level COP of the electric vehicle heat pump would be lower. For detailed information, please refer to the [results](results) folder of this project, where enthalpy, entropy and temperature values for different parts of the cycle are provided.
+
+![P-h_SIM](https://github.com/user-attachments/assets/effea2f7-4077-4bf4-82ef-bf2cce446ec7)
+
+
+## System Simulation
+The figure below illustrates how the refrigerant system interacts with the other components of the vehicle thermal management architecture in the Simulink.
+
+![Refrig_System](https://github.com/user-attachments/assets/bdc71a1a-0043-4013-a684-7a9282a2def7)
+
+In this project, due to CPU limitations, only the compressor model of GT-SUITE was linked to Simulink. The figure below illustrates the virtual vehicle developed using Simscape and its add-on products.  
+
+![Sim_diagram](https://github.com/user-attachments/assets/9ac5de1f-6cb7-4017-9ff3-9ec4309d36f7)
+
+
+These signals enable real-time interaction between the compressor model and the system-level of BEV. 
+The served fluid is a two-phase refrigerant. More information is available at [2].
+
 
 
 ## Post-processing
