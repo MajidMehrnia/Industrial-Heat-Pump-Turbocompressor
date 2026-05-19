@@ -60,9 +60,8 @@ The GT-SUITE model represents the thermodynamic and mechanical behavior of the H
 
 The figure below shows H/P system architecture in GT-SUITE. 
 
-
+<p align="center">
 ![Refrig_GT1](https://github.com/user-attachments/assets/46a3b2f9-04ed-427c-8833-e348070fcffc)
-
 
 
 
@@ -83,11 +82,11 @@ To enhance model fidelity and accelerate the design process, a novel **ML**-base
 
 ## System Simulation
 The figure below illustrates how the refrigerant system interacts with the other components of the vehicle thermal management architecture in the Simulink.
-
+<p align="center">
 ![Refrig_System](https://github.com/user-attachments/assets/bdc71a1a-0043-4013-a684-7a9282a2def7)
 
 In this project, due to CPU limitations, only the compressor model of GT-SUITE was linked to Simulink. The figure below illustrates the virtual vehicle developed using Simscape and its add-on products.  
-
+<p align="center">
 ![Sim_diagram](https://github.com/user-attachments/assets/9ac5de1f-6cb7-4017-9ff3-9ec4309d36f7)
 
 
