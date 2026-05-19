@@ -1,7 +1,20 @@
+## Description
+
+Developed a heat pump co-simulation framework using Simulink & GT-SUITE, based on a reference thermal architecture. The model comprises different subsystems:
+**Refrigerant Cycle**, **Coolant Cycle** and **Controls**. The control algorithms are implemented in Simulink and are contained in the **Controls** subsystem.
+
+The refrigerant system was modeled in GT-SUITE and coupled with Simulink to improve simulation accuracy. The working refrigerant in this system is **R1234yf**. The condenser is a tube-and-fin type heat exchanger that dissipates refrigerant heat to the air. The air flow is driven by the fan. The liquid receiver provides storage for the refrigerant and permits only subcooled liquid to flow into the expansion valves. The evaporator is a tube-and-fin type heat exchanger that lets the refrigerant absorb heat from the air. It also dehumidifies the air when the air is humid. The compressor models simulated in this work are representative of various industrial and thermal-management compressor technologies, including **centrifugal turbocompressors**, and industrial heat-pump compressors commonly used in process cooling, and high-capacity heat-pump applications. Two different approaches are employed to simulate the compressors: (i) a simplified 1D map-based model; and (ii) a hybrid 3D-to-1D modeling approach.
+
+### Main Thermodynamic Output
+The main thermodynamic output of the calculations is the **P–h diagram** of the heat pump cycle, as shown in the figure below. The calculated COP (based on refrigerant enthalpy difference (cycle COP)) is 5.2 at a cabin temperature of 40 °C, which is a reasonable value for this operating condition. It should be noted that the reported COP was calculated solely based on the refrigerant-side enthalpy differences across the compressor and condenser. The electrical power consumption of the compressor drive, condenser fan, cabin blower, and other auxiliary components was not included in the calculation. Therefore, the presented value represents the cycle (thermodynamic) COP rather than the overall system COP, and the actual system-level COP of the electric vehicle heat pump would be lower. For detailed information, please refer to the [results](results) folder of this project, where enthalpy, entropy and temperature values for different parts of the cycle are provided.
+
+![P-h_SIM](https://github.com/user-attachments/assets/effea2f7-4077-4bf4-82ef-bf2cce446ec7)
+
+
 ## Refrigerant System 
 
 The refrigerant cycle comprises compressor, condenser, chiller expansion valve (EV1), evaporator 
-expansion value (EV2), chiller, and evaporator. 
+expansion valve (EV2), chiller, and evaporator. 
 
 The refrigerant flow is driven by the compressor, which is connected to the HV electrical network. 
 The refrigerant flow continues to the condenser where heat is dissipated to the air. The air flow 
@@ -27,12 +40,17 @@ The figure below shows H/P system architecture in GT-SUITE.
 
 #### Compressor
 The compressor drives the flow in the refrigerant loop. It is controlled to maintain a pressure of 0.3 MPa in the chiller and the evaporator, which corresponds to a saturation temperature of around 1°C. 
-For a scroll compressor, a novel direct approach involves using a 3D CAD model of the fixed and orbiting scrolls to obtain volume and area profiles for the construction of a one-dimensional fluid dynamic model. The figure below presents a high-fidelity 1D hybrid approach for simulating a scroll compressor, demonstrating excellent agreement with test data.
+For a centrifigual compressor, a novel direct approach involves using a 3D CAD model of the fixed and orbiting scrolls to obtain volume and area profiles for the construction of a one-dimensional fluid dynamic model. The figure below presents a high-fidelity 1D hybrid approach for simulating a  turbocompressor, demonstrating excellent agreement with test data.
+
+Compressor maps are M-by-N matrices where the number of rows, M, is equal to the number of corrected speeds and the number of columns, N, is equal to the number of points along each corrected speed line. The indexing vectors for these matrices are a corrected speed vector of length M and a vector for the auxiliary coordinate system parameter β of length N with values ranging from 0 to 1.
+
+This figure shows a compressor map. It was used this compressor map to parameterize a Compressor block.
+<img width="698" height="520" alt="CompressorMapExample_01" src="https://github.com/user-attachments/assets/27ff4b09-ec5d-40f5-b6fc-30222b6f8713" />
+
+<img width="1006" height="519" alt="BraytonCycleGasTurbineExample_01" src="https://github.com/user-attachments/assets/fcd2d1ad-218b-4aea-a254-6daa41367c0b" />
 
 
-![GT_Scroll](https://github.com/user-attachments/assets/334a67f6-0d5a-42d4-8491-0dca461c959f)
-
-In this project, the scroll compressor is initially modeled using a simple one-dimensional (1D) map-based approach implemented in GT-SUITE. The compressor performance is defined through manufacturer-provided performance maps, which describe the refrigerant mass flow rate and compressor power consumption as functions of suction and discharge pressures, suction temperature, and compressor rotational speed. These maps inherently account for internal losses, including leakage, and heat transfer effects, without explicitly resolving the internal flow field. The compressor is therefore treated as a black-box component, enabling efficient and robust system-level simulations of the two-phase heat pump cycle. This modeling approach provides fast convergence and low computational cost, making it well suited for parametric studies and control-oriented analyses.
+The compressor performance is defined through manufacturer-provided performance maps, which describe the refrigerant mass flow rate and compressor power consumption as functions of suction and discharge pressures, suction temperature, and compressor rotational speed. These maps inherently account for internal losses, including leakage, and heat transfer effects, without explicitly resolving the internal flow field. The compressor is therefore treated as a black-box component, enabling efficient and robust system-level simulations of the two-phase heat pump cycle. This modeling approach provides fast convergence and low computational cost, making it well suited for parametric studies and control-oriented analyses.
 
 ![GT-SUITE_blocks](https://github.com/user-attachments/assets/fef207ef-334b-4d06-adff-b759e48033e8)
 
@@ -49,7 +67,7 @@ Therefore, only representative diagrams, descriptions, and co-simulation interfa
 
 ## Thermal Management System Design  
 
-This repository is based on a thermal management model originally developed in Simulink. It includes a virtual Battery thermal management (BEV) equipped with an integrated thermal management system [1].
+This repository is based on a thermal management model originally developed in Simulink [1].
 
 In addition to the Simulink implementation, the refrigerant-based thermal management system is also modeled independently in GT-SUITE. This enables a detailed system-level representation of the vapor compression cycle, including the compressor, condenser, expansion device, and evaporator, with high-fidelity thermodynamic and component performance modeling.
 
@@ -59,17 +77,6 @@ To enhance model fidelity and accelerate the design process, a novel **ML**-base
 [Physics-Informed AI/ML for Thermodynamic Modeling](https://github.com/MajidMehrnia/Physics-Informed-AI-ML-for-Thermodynamic-Modeling)
 
 
-## Description
-
-Developed a heat pump co-simulation framework for a BEV using Simulink & GT-SUITE, based on a reference thermal architecture. The model comprises five subsystems: 
-**Electric Powertrain**, **Driveline**, **Refrigerant Cycle**, **Coolant Cycle**, and **Cabin Cycle**. The control algorithms are implemented in Simulink and are contained in the **Controls** subsystem.
-
-The refrigerant system was modeled in GT-SUITE and coupled with Simulink to improve simulation accuracy. The working refrigerant in this system is **R1234yf**. The condenser is a rectangular tube-and-fin type heat exchanger that dissipates refrigerant heat to the air. The air flow is driven by the vehicle speed and the fan. The liquid receiver provides storage for the refrigerant and permits only subcooled liquid to flow into the expansion valves. The evaporator is a rectangular tube-and-fin type heat exchanger that lets the refrigerant absorb heat from the air. It also dehumidifies the air when the air is humid. The compressor model simulated here is representative of a Valeo-like electric **Scroll** compressor commonly used in automotive air-conditioning and thermal management systems. Two different approaches are employed to simulate the compressor: (i) a simple 1D map-based model; and (ii) a hybrid 3D-to-1D model.
-
-### Main Thermodynamic Output
-The main thermodynamic output of the calculations is the **P–h diagram** of the heat pump cycle, as shown in the figure below. The calculated COP (based on refrigerant enthalpy difference (cycle COP)) is 5.2 at a cabin temperature of 40 °C, which is a reasonable value for this operating condition. It should be noted that the reported COP was calculated solely based on the refrigerant-side enthalpy differences across the compressor and condenser. The electrical power consumption of the compressor drive, condenser fan, cabin blower, and other auxiliary components was not included in the calculation. Therefore, the presented value represents the cycle (thermodynamic) COP rather than the overall system COP, and the actual system-level COP of the electric vehicle heat pump would be lower. For detailed information, please refer to the [results](results) folder of this project, where enthalpy, entropy and temperature values for different parts of the cycle are provided.
-
-![P-h_SIM](https://github.com/user-attachments/assets/effea2f7-4077-4bf4-82ef-bf2cce446ec7)
 
 
 ## System Simulation
