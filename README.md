@@ -104,20 +104,6 @@ The main thermodynamic output of the calculations is the **P–h diagram** of th
 <img width="959" height="577" alt="BraytonCycleGasTurbineExample_05" src="https://github.com/user-attachments/assets/317acdc4-4f66-4287-827e-1f1a54f96aa2" />
 
 
-
-
-The post-processing of the thermal simulation results focuses on resolving heat flux distributions within the battery pack and their coupling to the coolant loop. Cell-level heat generation is computed internally from the electrical model and exported as a time-resolved thermal power signal, which is subsequently mapped to the thermal network. The resulting heat flux at the cell–cooling plate interface represents the effective thermal load imposed on the BTMS and varies strongly with drive cycle transients. Peak heat flux events correlate with high current demand phases rather than steady-state operation, highlighting the importance of transient thermal capacity over nominal cooling power when sizing the thermal interfaces.
-
-![HF-1](https://github.com/user-attachments/assets/deccfc83-95e9-4024-8bff-fa5597fe9d16)
-
-
-![T_vs_t_Motor_Battery](https://github.com/user-attachments/assets/4584f388-d131-4fe7-b464-d656eb21eac0)
-
-
-Temperature distribution results indicate that maximum cell temperature is not governed by total heat generation alone, but by the internal thermal resistance chain spanning cell core, casing, interface materials, and cooling plate conduction. Post-processed temperature gradients across the battery module reveal that once coolant inlet temperature and flow rate exceed a threshold, further improvements in convective heat transfer yield diminishing returns. This confirms that the system operates in a conduction-limited regime during high load events, where contact resistance and through-plane conductivity dominate over fluid-side heat transfer coefficients. Consequently, regions of elevated temperature align spatially with regions of highest heat flux density rather than with coolant flow maldistribution.
-
-From an energy distribution perspective, the BTMS post-processing shows that a non-trivial portion of the generated thermal energy is managed through active cooling work, introducing secondary losses via pumps and the refrigeration cycle. By integrating heat flux over time and comparing it to BTMS electrical power consumption, the simulation allows quantification of the effective thermal efficiency of the system. These results emphasize that optimal BTMS operation is achieved not by minimizing absolute cell temperature, but by limiting thermal gradients and peak heat flux while avoiding excessive auxiliary energy consumption. This framework enables informed trade-off studies between thermal performance, aging mitigation, and vehicle-level energy efficiency.
-
 ## Support
 For any questions regarding the model place a comment in the repository.
 
