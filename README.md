@@ -6,7 +6,7 @@ The refrigerant system is modeled in GT-SUITE and coupled with Simulink to impro
 
 The compressor models simulated in this work are representative of various industrial and thermal management compressor technologies, including **centrifugal turbocompressors** and industrial heat pump compressors commonly used in process cooling and high-capacity heat pump applications. Two different modeling approaches are employed: (i) a simplified 1D map-based model; and (ii) a hybrid 3D-to-1D reduced-order modeling approach.
 
-## Centrifugal turbocompressor system (process gas / air)
+## Centrifugal Turbocompressor System (process gas/air)
 
 The compressor drives the refrigerant or process gas flow in the system and is a key component in both industrial heat pump and centrifugal gas compression applications. Depending on the application, different compressor technologies are considered, including scroll compressors for automotive thermal systems, and high-speed centrifugal turbocompressors for industrial air and process gas systems.
 
