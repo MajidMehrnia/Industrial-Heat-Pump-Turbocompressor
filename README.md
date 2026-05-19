@@ -81,17 +81,14 @@ To enhance model fidelity and accelerate the design process, a novel **ML**-base
 
 
 ## System Simulation
-The figure below illustrates how the refrigerant system interacts with the other components of the vehicle thermal management architecture in the Simulink.
+The figure below illustrates how the refrigerant system interacts with the other components of the thermal management architecture in the Simulink.
 
-![Refrig_System](https://github.com/user-attachments/assets/bdc71a1a-0043-4013-a684-7a9282a2def7)
-
-In this project, due to CPU limitations, only the compressor model of GT-SUITE was linked to Simulink. The figure below illustrates the virtual vehicle developed using Simscape and its add-on products.  
+In this project, only the compressor model of GT-SUITE was linked to Simulink. The figure below illustrates the virtual vehicle developed using Simscape and its add-on products.  
 
 ![Sim_diagram](https://github.com/user-attachments/assets/9ac5de1f-6cb7-4017-9ff3-9ec4309d36f7)
 
 
-These signals enable real-time interaction between the compressor model and the system-level of BEV. 
-The served fluid is a two-phase refrigerant. More information is available at [2].
+These signals enable real-time interaction between the compressor model and the system-level.
 
 ### Main Thermodynamic Output
 The main thermodynamic output of the calculations is the **P–h diagram** of the heat pump cycle, as shown in the figure below. The calculated COP (based on refrigerant enthalpy difference (cycle COP)) is 5.2 at a **condensing temperature of 40 °C**, which is a reasonable value for this operating condition. It should be noted that the reported COP was calculated solely based on the refrigerant-side enthalpy differences across the compressor and condenser. The electrical power consumption of the compressor drive, condenser fan, cabin blower, and other auxiliary components was not included in the calculation. Therefore, the presented value represents the cycle (thermodynamic) COP rather than the overall system COP, and the actual system-level COP of the heat pump would be lower. For detailed information, please refer to the [results](results) folder of this project, where enthalpy, entropy and temperature values for different parts of the cycle are provided.
