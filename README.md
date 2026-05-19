@@ -45,9 +45,12 @@ For a centrifigual compressor, a novel direct approach involves using a 3D CAD m
 Compressor maps are M-by-N matrices where the number of rows, M, is equal to the number of corrected speeds and the number of columns, N, is equal to the number of points along each corrected speed line. The indexing vectors for these matrices are a corrected speed vector of length M and a vector for the auxiliary coordinate system parameter β of length N with values ranging from 0 to 1.
 
 This figure shows a compressor map. It was used this compressor map to parameterize a Compressor block.
+
 <img width="698" height="520" alt="CompressorMapExample_01" src="https://github.com/user-attachments/assets/27ff4b09-ec5d-40f5-b6fc-30222b6f8713" />
 
-<img width="1006" height="519" alt="BraytonCycleGasTurbineExample_01" src="https://github.com/user-attachments/assets/fcd2d1ad-218b-4aea-a254-6daa41367c0b" />
+<img width="470" height="338" alt="CompressorMapExample_05" src="https://github.com/user-attachments/assets/701a2c7d-14b8-4c04-b861-7c837c569907" />
+
+
 
 
 The compressor performance is defined through manufacturer-provided performance maps, which describe the refrigerant mass flow rate and compressor power consumption as functions of suction and discharge pressures, suction temperature, and compressor rotational speed. These maps inherently account for internal losses, including leakage, and heat transfer effects, without explicitly resolving the internal flow field. The compressor is therefore treated as a black-box component, enabling efficient and robust system-level simulations of the two-phase heat pump cycle. This modeling approach provides fast convergence and low computational cost, making it well suited for parametric studies and control-oriented analyses.
