@@ -17,6 +17,9 @@ Compressor maps are commonly used to parameterize the reduced-order model. These
 The following figure illustrates a typical centrifugal compressor map used for model parameterization in system-level simulations:
 <p align="center">
 <img width="698" height="520" alt="CompressorMapExample_01" src="https://github.com/user-attachments/assets/27ff4b09-ec5d-40f5-b6fc-30222b6f8713" /> 
+ 
+<p align="center">
+  <strong>Compressor Simulation</strong>
 <p align="center">
 <img width="537" height="278" alt="CompressorMapExample_05" src="https://github.com/user-attachments/assets/6c6b552a-174d-4494-b3c3-678262877813" />
 <img width="1280" height="542" alt="GT-SUITE_blocks" src="https://github.com/user-attachments/assets/46b17975-6716-4d76-bbdf-1696ac41fe68" />
