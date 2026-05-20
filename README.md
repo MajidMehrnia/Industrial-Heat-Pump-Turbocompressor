@@ -20,12 +20,12 @@ The following figure illustrates a typical centrifugal compressor map used for m
 
  
 <p align="center">
-  <strong>Compressor Simulation</strong>
+  <strong>1D Centrifugal Compressor Simulation</strong>
 <p align="center">
 <img width="537" height="278" alt="CompressorMapExample_05" src="https://github.com/user-attachments/assets/6c6b552a-174d-4494-b3c3-678262877813" />
 
  <p align="center">
-  <strong>Co-Simulation of Compressor in GT with Simulink</strong>
+  <strong>GT-SUITE & Simulink Co-Simulation of Industrial Compressors</strong>
   
   <p align="center">
 <img width="1280" height="542" alt="GT-SUITE_blocks" src="https://github.com/user-attachments/assets/46b17975-6716-4d76-bbdf-1696ac41fe68" />
